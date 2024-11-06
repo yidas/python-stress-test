@@ -37,7 +37,35 @@ OUTLINE
 DEMONSTRATION
 -------------
 
+Just write your own callback functions based on the [Worker Dispatcher](https://github.com/yidas/python-worker-dispatcher) library, then run it and generate the report file:
 
+```bash
+import stress_test
+
+def each_task(id: int, config, task, log):
+    response = requests.get(config['my_endpoint'] + task)
+    return response
+
+def main():
+
+    results = stress_test.start({
+        'task': {
+            'list': ['ORD_AH001', 'ORD_KL502', '...' , 'ORD_GR393'],
+            'callback': each_task,
+            'config': {
+                'my_endpoint': 'https://your.name/order-handler/'
+            },
+        }
+    })
+
+    if results != False:
+
+        file_path = stress_test.generate_report(file_path='./tps-report.xlsx')
+        print("Report has been successfully generated at {}".format(file_path))
+
+if __name__ == '__main__':
+    main()
+```
 
 ---
 
