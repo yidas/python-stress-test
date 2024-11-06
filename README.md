@@ -67,6 +67,8 @@ if __name__ == '__main__':
     main()
 ```
 
+<img src="https://github.com/yidas/python-stress-tool/blob/main/img/demonstration_excel.png?raw=true" width="400px" />
+
 ---
 
 INTRODUCTION
